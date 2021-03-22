@@ -1,5 +1,9 @@
 # Markdown Viewer HTML
 
+## Example
+
+https://shining-corn.github.io/markdown-viewer-html/example/
+
 ## Quick Start Guide
 
 1. Put [index.html](./dist/index.html) and [mdvh.js](./dist/mdvh.js) on your web server.
