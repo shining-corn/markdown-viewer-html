@@ -2,7 +2,7 @@
 
 ## Example
 
-https://shining-corn.github.io/markdown-viewer-html/example/
+https://shining-corn.github.io/markdown-viewer-html/
 
 ## Quick Start Guide
 
