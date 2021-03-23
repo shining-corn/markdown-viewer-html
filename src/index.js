@@ -133,7 +133,7 @@ function resolvePath(path) {
             }
         }
 
-        // overwite href
+        // overwite a tag href
         const aTags = Array.from(document.getElementsByTagName('a'));
         for (const aTag of aTags) {
             const originalHref = aTag.getAttribute('href')
@@ -164,6 +164,24 @@ function resolvePath(path) {
 
                 aTag.href = newHref;
             }
+        }
+
+        // overwrite ims tag src
+        const imgTags = Array.from(document.getElementsByTagName('img'));
+        for (const imgTag of imgTags) {
+            const originalSrc = imgTag.getAttribute('src');
+            if (hasSheme(originalSrc)) {
+                continue;
+            }
+
+            console.log('-----')
+            console.log(originalSrc);
+
+            const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
+            const newSrc = resolvePath(currentPath + '/' + originalSrc);
+            console.log(newSrc);
+
+            imgTag.setAttribute('src', newSrc);
         }
     };
     request.send();
