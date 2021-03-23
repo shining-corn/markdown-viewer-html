@@ -26,6 +26,8 @@ const mdCss = require('./md.css');
 const tocCss = require('./toc.css');
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const queryPramMdPath = 'mdpath';
+
 function getQueryParams() {
     let result = {};
     const search = location.search;
@@ -104,12 +106,12 @@ function resolvePath(path) {
     document.getElementById(divId).innerText = 'now loading';
 
     const params = getQueryParams();
-    if (params.p === undefined) {
-        params.p = './index.md';
+    if (params[queryPramMdPath] === undefined) {
+        params[queryPramMdPath] = './index.md';
     }
 
     const request = new XMLHttpRequest();
-    request.open('GET', params.p);
+    request.open('GET', params[queryPramMdPath]);
     request.setRequestHeader('Content-Type', 'text/markdown');
     request.onload = function (e) {
         // render
@@ -144,9 +146,9 @@ function resolvePath(path) {
 
             const matchResult = originalHref.match(/([^\?#]*)(\?[^#]*)?(#.*)?/i);
             if (matchResult && matchResult[1]) {
-                const currentPath = params.p.substring(0, params.p.lastIndexOf('/') + 1);
+                const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
 
-                let newHref = location.pathname + '?p=' + resolvePath(currentPath + matchResult[1]);
+                let newHref = location.pathname + '?' + queryPramMdPath + '=' + resolvePath(currentPath + matchResult[1]);
 
                 if (isDirectory(originalHref)) {
                     newHref += '/index.md';
