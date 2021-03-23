@@ -77,7 +77,7 @@ function resolvePath(path) {
     const temp = new Array();
     if (pathes) {
         for (const str of pathes) {
-            if (str === '' || str ==='.') {
+            if (str === '' || str === '.') {
                 continue;
             }
             if (str === '..') {
@@ -140,29 +140,33 @@ function resolvePath(path) {
             if (hasSheme(originalHref)) {
                 continue;
             }
+
             if (!isMarkdownFile(originalHref) && !isDirectory(originalHref)) {
-                continue;
-            }
-
-            const matchResult = originalHref.match(/([^\?#]*)(\?[^#]*)?(#.*)?/i);
-            if (matchResult && matchResult[1]) {
                 const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
-
-                let newHref = location.pathname + '?' + queryPramMdPath + '=' + resolvePath(currentPath + matchResult[1]);
-
-                if (isDirectory(originalHref)) {
-                    newHref += '/index.md';
-                }
-
-                if (matchResult[2]) {
-                    newHref += '&' + matchResult[2].substring(1);
-                }
-
-                if (matchResult[3]) {
-                    newHref += matchResult[3];
-                }
-
+                const newHref = resolvePath(currentPath + '/' + originalHref);
                 aTag.href = newHref;
+            }
+            else {
+                const matchResult = originalHref.match(/([^\?#]*)(\?[^#]*)?(#.*)?/i);
+                if (matchResult && matchResult[1]) {
+                    const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
+
+                    let newHref = location.pathname + '?' + queryPramMdPath + '=' + resolvePath(currentPath + matchResult[1]);
+
+                    if (isDirectory(originalHref)) {
+                        newHref += '/index.md';
+                    }
+
+                    if (matchResult[2]) {
+                        newHref += '&' + matchResult[2].substring(1);
+                    }
+
+                    if (matchResult[3]) {
+                        newHref += matchResult[3];
+                    }
+
+                    aTag.href = newHref;
+                }
             }
         }
 
@@ -174,13 +178,8 @@ function resolvePath(path) {
                 continue;
             }
 
-            console.log('-----')
-            console.log(originalSrc);
-
             const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
             const newSrc = resolvePath(currentPath + '/' + originalSrc);
-            console.log(newSrc);
-
             imgTag.setAttribute('src', newSrc);
         }
     };
