@@ -15,7 +15,7 @@ https://shining-corn.github.io/markdown-viewer-html/
 see [markdown-it](https://github.com/markdown-it/markdown-it)
 
 ## Extended Format
-### Table of Content
+### Table of Contents
 
 - example
   
@@ -83,7 +83,7 @@ see [markdown-it-math](https://github.com/runarberg/markdown-it-math)
 
 ### video
 
-see [markdonw-it-block-embed](https://github.com/rotorz/markdown-it-block-embed)
+see [markdown-it-block-embed](https://github.com/rotorz/markdown-it-block-embed)
 
 - example
   
@@ -94,7 +94,7 @@ see [markdonw-it-block-embed](https://github.com/rotorz/markdown-it-block-embed)
 ## Dependencies
 
 - markdown-it
-- markdonw-it-anchor
+- markdown-it-anchor
 - markdown-it-table-of-contents
 - markdown-it-footnote
 - md-it-mermaid

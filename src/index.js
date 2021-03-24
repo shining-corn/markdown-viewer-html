@@ -11,14 +11,17 @@ const md = require('markdown-it')({
 })
     .use(mdItMermaid)
     .use(mdItFootnote)
-    .use(mdItAnchor, { permalink: true })
+    .use(mdItAnchor, {
+        level: 2,
+        permalink: true,
+    })
     .use(mdItToc, {
-        includeLevel: [2, 3, 4]
+        includeLevel: [2, 3, 4],
     })
     .use(mdItAlerts)
     .use(mdItMath)
     .use(mdItBlockEmbed, {
-        containerClassName: "video-embed"
+        containerClassName: "video-embed",
     });
 const mermaid = require('mermaid');
 
@@ -26,9 +29,6 @@ const mermaid = require('mermaid');
 const mdCss = require('./md.css');
 const tocCss = require('./mdvh.css');
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// constants
-const queryParamMdPath = 'mdpath';
 
 function getQueryParams() {
     let result = {};
@@ -107,10 +107,15 @@ function slugify(str) {
 }
 
 (function () {
+    const queryParamMdPath = 'mdpath';
     const divId = 'contents';
 
-    document.getElementById(divId).innerText = 'now loading';
+    // initialize
+    mermaid.initialize({
+        startOnLoad: false,
+    });
 
+    // get query parameters
     const params = getQueryParams();
     if (params[queryParamMdPath] === undefined || params[queryParamMdPath] === '') {
         params[queryParamMdPath] = './index.md';
@@ -122,7 +127,7 @@ function slugify(str) {
     }
 
     // overwrite browser URL
-    history.replaceState('','', location.pathname + '?' + queryParamMdPath + '=' + params[queryParamMdPath] + location.hash);
+    history.replaceState('', '', location.pathname + '?' + queryParamMdPath + '=' + params[queryParamMdPath] + location.hash);
 
     const request = new XMLHttpRequest();
     request.open('GET', params[queryParamMdPath]);
