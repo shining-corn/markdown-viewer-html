@@ -22,11 +22,13 @@ const md = require('markdown-it')({
     });
 const mermaid = require('mermaid');
 
+// css
 const mdCss = require('./md.css');
 const tocCss = require('./mdvh.css');
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const queryPramMdPath = 'mdpath';
+// constants
+const queryParamMdPath = 'mdpath';
 
 function getQueryParams() {
     let result = {};
@@ -110,17 +112,20 @@ function slugify(str) {
     document.getElementById(divId).innerText = 'now loading';
 
     const params = getQueryParams();
-    if (params[queryPramMdPath] === undefined || params[queryPramMdPath] === '') {
-        params[queryPramMdPath] = './index.md';
+    if (params[queryParamMdPath] === undefined || params[queryParamMdPath] === '') {
+        params[queryParamMdPath] = './index.md';
     }
     else {
-        if (isDirectory(params[queryPramMdPath])) {
-            params[queryPramMdPath] += '/index.md';
+        if (isDirectory(params[queryParamMdPath])) {
+            params[queryParamMdPath] = resolvePath(params[queryParamMdPath] + '/index.md');
         }
     }
 
+    // overwrite browser URL
+    history.replaceState('','', location.pathname + '?' + queryParamMdPath + '=' + params[queryParamMdPath] + location.hash);
+
     const request = new XMLHttpRequest();
-    request.open('GET', params[queryPramMdPath]);
+    request.open('GET', params[queryParamMdPath]);
     request.setRequestHeader('Content-Type', 'text/markdown');
     request.onload = function (e) {
         // render
@@ -152,16 +157,16 @@ function slugify(str) {
             }
 
             if (!isMarkdownFile(originalHref) && !isDirectory(originalHref)) {
-                const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
+                const currentPath = params[queryParamMdPath].substring(0, params[queryParamMdPath].lastIndexOf('/') + 1);
                 const newHref = resolvePath(currentPath + '/' + originalHref);
                 aTag.href = newHref;
             }
             else {
                 const matchResult = originalHref.match(/([^\?#]*)(\?[^#]*)?(#.*)?/i);
                 if (matchResult && matchResult[1] !== undefined) {
-                    const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
+                    const currentPath = params[queryParamMdPath].substring(0, params[queryParamMdPath].lastIndexOf('/') + 1);
 
-                    let newHref = location.pathname + '?' + queryPramMdPath + '=' + resolvePath(currentPath + matchResult[1]);
+                    let newHref = location.pathname + '?' + queryParamMdPath + '=' + resolvePath(currentPath + matchResult[1]);
 
                     if (isDirectory(originalHref)) {
                         newHref += '/index.md';
@@ -173,8 +178,6 @@ function slugify(str) {
 
                     if (matchResult[3] !== undefined) {
                         newHref += '#' + slugify(matchResult[3].substring(1));
-
-                        console.log(slugify(matchResult[3].substring(1)))
                     }
 
                     aTag.href = newHref;
@@ -190,7 +193,7 @@ function slugify(str) {
                 continue;
             }
 
-            const currentPath = params[queryPramMdPath].substring(0, params[queryPramMdPath].lastIndexOf('/') + 1);
+            const currentPath = params[queryParamMdPath].substring(0, params[queryParamMdPath].lastIndexOf('/') + 1);
             const newSrc = resolvePath(currentPath + '/' + originalSrc);
             imgTag.setAttribute('src', newSrc);
         }
