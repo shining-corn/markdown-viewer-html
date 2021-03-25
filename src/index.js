@@ -166,6 +166,9 @@ function slugify(str) {
                 const newHref = resolvePath(currentPath + '/' + originalHref);
                 aTag.href = newHref;
             }
+            else if (originalHref.charAt(0) === '#') {
+                aTag.href = '#' + slugify(originalHref.substring(1));
+            }
             else {
                 const matchResult = originalHref.match(/([^\?#]*)(\?[^#]*)?(#.*)?/i);
                 if (matchResult && matchResult[1] !== undefined) {
