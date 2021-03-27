@@ -7,7 +7,7 @@
 
 .table-of-contents ul {
     list-style-type: none;
-    padding: 0 1em 0 1em;
+    padding: 0 16px 0 16px;
     margin: 0;
     width: fit-content;
     position: relative;
@@ -15,4 +15,8 @@
 
 a.header-anchor {
     color: #e1e4e8;
+}
+
+.mermaid {
+    margin-bottom: 16px;
 }
