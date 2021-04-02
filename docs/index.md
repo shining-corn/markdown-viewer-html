@@ -24,16 +24,53 @@ see [markdown-it](https://github.com/markdown-it/markdown-it)
 see [markdown-it-alerts](https://github.com/nunof07/markdown-it-alerts#readme)
 
 - example
+  - success
+    
+    ```
+    ::: success
+    Hello world! [Link](#).
+    :::
+    ```
+    
+    ::: success
+    Hello world! [Link](#).
+    :::
+    
+  - info
   
-  ```
-  ::: warning
-  Hello world! [Link](#).
-  :::
-  ```
-  
-  ::: warning
-  Hello world! [Link](#).
-  :::
+    ```
+    ::: info
+    Hello world! [Link](#).
+    :::
+    ```
+    
+    ::: info
+    Hello world! [Link](#).
+    :::
+    
+  - warning
+    
+    ```
+    ::: warning
+    Hello world! [Link](#).
+    :::
+    ```
+    
+    ::: warning
+    Hello world! [Link](#).
+    :::
+    
+  - danger
+    
+    ```
+    ::: danger
+    Hello world! [Link](#).
+    :::
+    ```
+    
+    ::: danger
+    Hello world! [Link](#).
+    :::
 
 ### footnote
 

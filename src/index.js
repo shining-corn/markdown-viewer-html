@@ -28,7 +28,7 @@ const mermaid = require('mermaid');
 // css
 const mdCss = require('./md.css');
 const tocCss = require('./mdvh.css');
-import 'bootstrap/dist/css/bootstrap.min.css';
+const bsCss = require('./bootstrap.css');
 
 function getQueryParams() {
     let result = {};
