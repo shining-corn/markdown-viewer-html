@@ -136,6 +136,9 @@ function slugify(str) {
     const request = new XMLHttpRequest();
     request.open('GET', params[queryParamMdPath]);
     request.setRequestHeader('Content-Type', 'text/markdown');
+    request.setRequestHeader('Pragma', 'no-cache');
+    request.setRequestHeader('Cache-Control', 'no-cache');
+    request.setRequestHeader('If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT');
     request.onload = function (e) {
         // render
         document.getElementById(divId).innerHTML = md.render(request.response);
