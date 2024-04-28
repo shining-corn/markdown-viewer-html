@@ -1,5 +1,9 @@
 # Markdown Viewer HTML
 
+<!-- test -->
+<a id="test-a-tag-without-href-attribute"></a>
+<!-- test -->
+
 ## Quick Start Guide
 
 1. Put [index.html](./dist/index.html) and [mdvh.js](./dist/mdvh.js) on your web server.

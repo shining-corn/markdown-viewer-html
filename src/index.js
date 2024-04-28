@@ -41,7 +41,7 @@ function getQueryParams() {
     return result;
 }
 
-function hasSheme(url) {
+function hasScheme(url) {
     return url.search(/^[a-z][a-z0-9\+\-\.]*:\/\//i) !== -1;
 }
 
@@ -163,8 +163,7 @@ function slugify(str) {
         const aTags = Array.from(document.getElementsByTagName('a'));
         for (const aTag of aTags) {
             const originalHref = aTag.getAttribute('href')
-
-            if (hasSheme(originalHref)) {
+            if (!originalHref || hasScheme(originalHref)) {
                 continue;
             }
 
@@ -212,7 +211,7 @@ function slugify(str) {
         const imgTags = Array.from(document.getElementsByTagName('img'));
         for (const imgTag of imgTags) {
             const originalSrc = imgTag.getAttribute('src');
-            if (hasSheme(originalSrc) || originalSrc.charAt(0) === '/') {
+            if (!originalSrc || hasScheme(originalSrc) || originalSrc.charAt(0) === '/') {
                 continue;
             }
 

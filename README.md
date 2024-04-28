@@ -105,6 +105,13 @@ see [markdown-it-block-embed](https://github.com/rotorz/markdown-it-block-embed)
 - markdown-it-math
 - markdown-it-block-embed
 
+# How to Build
+
+```sh
+npm install
+npm run build
+```
+
 ## License
 
 MIT License
