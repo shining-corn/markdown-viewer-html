@@ -128,48 +128,18 @@ see [mermaid.js](https://mermaid-js.github.io/mermaid/#/)
       C2-->D;
   ```
 
-### math
-
-see [markdown-it-math](https://github.com/runarberg/markdown-it-math)
-
-- example
-  
-  ```
-  $$$
-  P(A | B) = (P(B | A)P(A)) / P(B)
-  $$$
-  ```
-  
-  $$$
-  P(A | B) = (P(B | A)P(A)) / P(B)
-  $$$
-
-### video
-
-see [markdonw-it-block-embed](https://github.com/rotorz/markdown-it-block-embed)
-
-- example
-  
-  ```
-  @[youtube](lJIrF4YjHfQ)
-  ```
-
-  @[youtube](lJIrF4YjHfQ)
-
 ## Dependencies
 
 - markdown-it
-- markdonw-it-anchor
+- markdown-it-alerts
+- markdown-it-anchor
 - markdown-it-table-of-contents
 - markdown-it-footnote
 - md-it-mermaid
 - mermaid
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
-- markdown-it-alerts
 - bootstrap
-- markdown-it-math
-- markdown-it-block-embed
-
+- 
 ## License
 
 MIT License

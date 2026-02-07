@@ -1,5 +1,6 @@
+const webpack = require('webpack');
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -12,7 +13,10 @@ module.exports = {
         new htmlWebpackPlugin({
             template: './src/template.html',
             filename: 'index.html'
-        })
+        }),
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1,
+        }),
     ],
     module: {
         rules: [

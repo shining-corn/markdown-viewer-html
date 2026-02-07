@@ -3,8 +3,6 @@ const mdItFootnote = require('markdown-it-footnote');
 const mdItAnchor = require('markdown-it-anchor').default;
 const mdItToc = require('markdown-it-table-of-contents');
 const mdItAlerts = require('markdown-it-alerts');
-const mdItMath = require('markdown-it-math');
-const mdItBlockEmbed = require('markdown-it-block-embed');
 const md = require('markdown-it')({
     html: true,
     linkify: true
@@ -19,11 +17,8 @@ const md = require('markdown-it')({
         includeLevel: [2, 3, 4],
     })
     .use(mdItAlerts)
-    .use(mdItMath)
-    .use(mdItBlockEmbed, {
-        containerClassName: "video-embed",
-    });
-const mermaid = require('mermaid');
+    ;
+const mermaid = require('mermaid').default;
 
 // css
 const mdCss = require('./md.css');
